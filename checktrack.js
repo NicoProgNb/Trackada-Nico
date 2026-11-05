@@ -48,3 +48,44 @@ const verifierErreur = (projet, nomProjet) => {
     }
     return erreursArray
 }
+
+// Lancer la vérification des fichiers
+let correct = 0
+const lancerVerification = () => {
+    console.log("")
+
+    // Seulement si absence du dossier parent
+    if (!existsSync(dossierProjets)) {
+        console.log('❌ Dossier projets inexistant')
+        console.log("")
+        return
+    }
+
+    const projects = contenu.projects
+    
+    projects.forEach((project) => {
+        // Afficher le nom du projet
+        const nomProjet = join(dossierProjets, project.name)
+        const listeErreurs = verifierErreur(project, nomProjet)
+
+        // Affichage si tout est présent
+        if (listeErreurs.length === 0) {
+            console.log(`✅ ${project.name} est valide`)
+            console.log("")
+            correct ++
+        
+        // Affichage des erreurs listées
+        } else {
+            console.log(`❌ ${project.name} en défaut`)
+            listeErreurs.forEach((erreur) => console.log(`- ${erreur}`))
+            console.log("")
+        }
+    })
+}
+
+// Pourcentage d'éléments présents
+const erreurPourcent = (projetsCorrects) => {
+    const total = contenu.projects.length
+    const pourcentage = Math.round(projetsCorrects * 100/ total)
+    console.log(`${pourcentage}% des projets sont initialisés correctement - (${projetsCorrects}/${total})`)
+}

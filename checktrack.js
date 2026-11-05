@@ -1,7 +1,7 @@
 import { readFileSync, existsSync } from 'fs'
 import { join } from 'path'
 import { homedir } from 'os'
-// import readline from 'readline'
+import readline from 'readline'
 
 // Parser le contenu json
 const contenu = JSON.parse(readFileSync('track.json', 'utf-8'))
@@ -89,3 +89,19 @@ const erreurPourcent = (projetsCorrects) => {
     const pourcentage = Math.round(projetsCorrects * 100/ total)
     console.log(`${pourcentage}% des projets sont initialisés correctement - (${projetsCorrects}/${total})`)
 }
+
+// Demande à l'utilisateur l'analyse
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+})
+
+rl.question('Vérifier les fichiers ? (o/n ) : ', (reponse) => {
+    if (reponse.trim().toLowerCase() === 'o') {
+        lancerVerification()
+        erreurPourcent(correct)
+    } else {
+        console.log('Fin de la fonction vérification')
+    }
+    rl.close()
+})

@@ -6,19 +6,24 @@
 - track.json : Données qui serviront de comparaison avec les dossiers réels
 
 ## Utilisation
->> Option 1
+``ETAPE 1 - Télecharger``
+
+Cloner le dépot git :
+- Dans le terminal, se déplacer dans l'endroit souhaité pour cloner le dossier (cd)
+- Cloner via HTML : git clone https://github.com/NicoProgNb/Trackada-Nico.git
+        ou
+- Cloner via SSH : git clone git@github.com:NicoProgNb/Trackada-Nico.git
+
+``ETAPE 2 - Executer``
+
 - Ouvrir checktrack.js sur vsCode
 - Ouvrir le terminal
 - Taper le code suivant : node checktrack.js
 
->> Option 2 (si l'on sait s'y déplacer via "cd")
-- Ouvrir le terminal
-- Se déplacer dans le dossier "projets"
-- Taper le code suivant : node checktrack.js
-
 ## Commentaire
 En suivant les consignes, les chemins sont absolus via homedir() que l'on a importé. 
-Pour que tout n'apparaisse pas en "false", cela incite à avoir la même disposition de dossier. 
+Pour que tout n'apparaisse pas en "false" chez un utilisateur autre, cela incite à avoir la même disposition de dossier. 
 
 ## Piste d'amélioration
-Faire des chemins relatifs (./projets)
+Séparer la recherche du dossier parent nommé "projets" (chemin absolu),
+de la recherche de chacun des projets (chemin relatifs)
